@@ -1,0 +1,53 @@
+//Simple implementation of move to front algorithm
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
+
+public class MoveToFront {
+
+    public static void main(String[] args) {
+
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter string to transform");
+        String givenString = in.nextLine();
+        char input [] = givenString.toCharArray();
+        in.close();
+        List<Integer> output = new ArrayList <Integer>();
+        List<Character> alfabetList = new LinkedList<Character>();
+
+
+        for(int i =32; i < 256; i ++)
+            alfabetList.add((char) i);
+
+
+
+        for(int i = 0; i < input.length; i++)
+        {
+            Iterator<Character> it = alfabetList.iterator();
+            int index = 0;
+
+            while(it.hasNext()){
+
+                Object iter = it.next();
+
+                index++;
+                if((( Character) input[i]).equals(iter)){
+                    output.add(index);
+                    it.remove();
+                    ((LinkedList<Character>)alfabetList).addFirst(input[i]);
+                    break;
+                }
+
+            }
+        }
+
+        System.out.println(output);
+
+    }
+
+
+}
+
